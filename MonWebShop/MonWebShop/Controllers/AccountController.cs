@@ -136,6 +136,8 @@ namespace MonWebShop.Controllers
 
         //
         // GET: /Account/Register
+        /*Methode executee lors du clique sur le lien vers "inscription", 
+        elle affiche alors le formulaire a remplir par le client potentiel.*/
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -144,17 +146,51 @@ namespace MonWebShop.Controllers
 
         //
         // POST: /Account/Register
+        /*Cette methode prend en paramètre le formulaire remplit 
+        en vu d'enregistrer l'utilisateur*/
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            /*vérification de la validité du model(verfifier si tout les cmaps sont bien remplis 
+             avec des données recspectants le formatage)*/
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    try
+                    {
+                        // ajout du user dans la table client         
+                        using (DAL.WebShopEntities dal = new DAL.WebShopEntities())
+                        {
+                            dal.Clients.Add(
+                                new DAL.Client
+                                {
+                                    CLI_Nom = model.Nom,
+                                    CLI_Prenom = model.Prenom,
+                                    CLI_Civilite = model.Civilite,
+                                    CLI_Email = model.Email,
+                                    CLI_Adresse = model.Adresse,
+                                    CLI_CodePostal = model.CodePostal,
+                                    CLI_Ville = model.Ville,
+                                    CLI_Telephone = model.Telephone,
+                                    CLI_AspNetUserId = user.Id
+                                });
+                            dal.SaveChanges();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        // client n'est pas ajouté delete l'asp user créé         
+                        await UserManager.DeleteAsync(user);
+                        ModelState.AddModelError("", "Echec création client, veuillez réessayer");
+                        return View(model);
+                    }
+                    // on affecte le rôle client     
+                    UserManager.AddToRole(user.Id, "client");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Pour plus d'informations sur l'activation de la confirmation du compte et la réinitialisation du mot de passe, consultez http://go.microsoft.com/fwlink/?LinkID=320771
