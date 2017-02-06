@@ -17,8 +17,8 @@
 
 ## article
 - [ ] vue detail article
-- [ ] methode delete article dans le controleur article
 - [ ] methode detail article dans le controleur article
+- [ ] methode delete article dans le controleur article
 - [ ] methode edit article dans le controleur article
 - [ ] methode create article dans le controleur article
 
@@ -26,9 +26,11 @@
 - [ ] vue panier de l'utilisateur (il faut verifier la session)
 - [ ] methode add dans le controleur panier pour ajouter un article au panier
 - [ ] methode remove dans le controleur panier pour supprimer un article au panier
+- [ ] bouton commander panier pour l'utilisateur
 
 ## commande
 - [ ] vue commande qui affiche toutes les commandes des utilisateurs (il faut verifier la session)
+- [ ] methode commander dans le controleur commande qui permet de commander un panier et si il n'est pas connecter, renvoyer sur la vue login
 - [ ] methode detail dans le controleur commande qui affiche le detail d'une commande
 - [ ] methode setDelivrering qui permet de changer le statut d'une commande en "livraison en cours" (admin seulement)
 - [ ] methode setDelivrered qui permet de changer le statut d'une commande en "livraison terminée" (admin seulement)
