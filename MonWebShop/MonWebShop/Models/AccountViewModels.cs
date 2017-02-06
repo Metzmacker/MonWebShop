@@ -65,6 +65,26 @@ namespace MonWebShop.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Nom { get; set; }
+
+        public string Prenom { get; set; }
+
+        [Required]
+        public string Civilite { get; set; }
+
+        [Required]
+        public string Adresse { get; set; }
+
+        [Required]
+        public string CodePostal { get; set; }
+
+        [Required]
+        public string Ville { get; set; }
+
+        [Required]
+        public string Telephone { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Courrier électronique")]
         public string Email { get; set; }
