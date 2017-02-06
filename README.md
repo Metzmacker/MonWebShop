@@ -2,8 +2,8 @@
 - [x] Tables DB
 - [x] Lien entre les Tables d'authentification et les Clients
 - [ ] Controlleur Home (Articles) (Annonymous)
-..* [Actions]
-- [ ] Methode Index (Affichage de liste)
+- ..* [Actions]
+- ..1 [ ] Methode Index (Affichage de liste)
 ..* [Vues]
 
 - [ ] Controleur Commandes(admin + client)
