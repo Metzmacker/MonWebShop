@@ -10,117 +10,112 @@ using MonWebShop.DAL;
 
 namespace MonWebShop.Controllers
 {
-    public class HomeController : Controller
+    public class CommandesController : Controller
     {
         private WebShopEntities db = new WebShopEntities();
-        [AllowAnonymous]
-        // GET: Home
+
+        // GET: Commandes
         public ActionResult Index()
         {
-            ViewBag.ListeCategories = new SelectList(db.Categories, "CAT_Id", "CAT_Libelle");
-            var articles = db.Articles.Include(a => a.SousCategorie);
-            return View(articles.ToList());
+            var commandes = db.Commandes.Include(c => c.Client);
+            return View(commandes.ToList());
         }
-        [Authorize(Roles = "admin")]
-        // GET: Home/Details/5
-        public ActionResult _Details(int? id)
+
+        // GET: Commandes/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            Commande commande = db.Commandes.Find(id);
+            if (commande == null)
             {
                 return HttpNotFound();
             }
-            return View(article);
+            return View(commande);
         }
-        [Authorize(Roles = "admin")]
-        // GET: Home/Create
+
+        // GET: Commandes/Create
         public ActionResult Create()
         {
-            ViewBag.ART_SCAT_Id = new SelectList(db.SousCategories, "SCAT_Id", "SCAT_Libelle");
+            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom");
             return View();
         }
 
-        // POST: Home/Create
+        // POST: Commandes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ART_Id,ART_SCAT_Id,ART_Libelle,ART_Description,ART_Prix,ART_Stock")] Article article)
+        public ActionResult Create([Bind(Include = "COM_Id,COM_CLI_Id,COM_Date,COM_Statut,COM_DateLivraison,COM_Nom,COM_Prenom,COM_Civilite,COM_Adresse,COM_CodePostal,COM_Ville")] Commande commande)
         {
             if (ModelState.IsValid)
             {
-                db.Articles.Add(article);
+                db.Commandes.Add(commande);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ART_SCAT_Id = new SelectList(db.SousCategories, "SCAT_Id", "SCAT_Libelle", article.ART_SCAT_Id);
-            return View(article);
+            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom", commande.COM_CLI_Id);
+            return View(commande);
         }
-        [Authorize(Roles = "admin")]
-        // GET: Home/Edit/5
+
+        // GET: Commandes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            Commande commande = db.Commandes.Find(id);
+            if (commande == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ART_SCAT_Id = new SelectList(db.SousCategories, "SCAT_Id", "SCAT_Libelle", article.ART_SCAT_Id);
-            return View(article);
+            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom", commande.COM_CLI_Id);
+            return View(commande);
         }
 
-        // POST: Home/Edit/5
+        // POST: Commandes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [Authorize(Roles = "admin")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ART_Id,ART_SCAT_Id,ART_Libelle,ART_Description,ART_Prix,ART_Stock")] Article article)
+        public ActionResult Edit([Bind(Include = "COM_Id,COM_CLI_Id,COM_Date,COM_Statut,COM_DateLivraison,COM_Nom,COM_Prenom,COM_Civilite,COM_Adresse,COM_CodePostal,COM_Ville")] Commande commande)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(article).State = EntityState.Modified;
+                db.Entry(commande).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ART_SCAT_Id = new SelectList(db.SousCategories, "SCAT_Id", "SCAT_Libelle", article.ART_SCAT_Id);
-            return View(article);
+            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom", commande.COM_CLI_Id);
+            return View(commande);
         }
 
-        // GET: Home/Delete/5
-        [Authorize(Roles = "admin")]
+        // GET: Commandes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+            Commande commande = db.Commandes.Find(id);
+            if (commande == null)
             {
                 return HttpNotFound();
             }
-            return View(article);
+            return View(commande);
         }
 
-        // POST: Home/Delete/5
-        [Authorize(Roles = "admin")]
+        // POST: Commandes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Article article = db.Articles.Find(id);
-            db.Articles.Remove(article);
+            Commande commande = db.Commandes.Find(id);
+            db.Commandes.Remove(commande);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

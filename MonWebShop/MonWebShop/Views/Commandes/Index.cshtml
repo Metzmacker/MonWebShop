@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MonWebShop.DAL.Commande>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_DateLivraison)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Civilite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_CodePostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COM_Ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Client.CLI_Nom)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_DateLivraison)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Civilite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_CodePostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COM_Ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Client.CLI_Nom)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.COM_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.COM_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.COM_Id })
+        </td>
+    </tr>
+}
+
+</table>

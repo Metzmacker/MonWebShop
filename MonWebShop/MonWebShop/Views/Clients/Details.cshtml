@@ -1,0 +1,90 @@
+﻿@model MonWebShop.DAL.Client
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Civilite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Civilite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLI_Telephone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLI_Telephone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CLI_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

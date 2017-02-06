@@ -1,0 +1,64 @@
+﻿@model MonWebShop.DAL.Article
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Article</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ART_Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ART_Libelle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ART_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ART_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ART_Prix)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ART_Prix)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ART_Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ART_Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SousCategorie.SCAT_Libelle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SousCategorie.SCAT_Libelle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

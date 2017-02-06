@@ -1,0 +1,98 @@
+﻿@model MonWebShop.DAL.Commande
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Commande</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Statut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Statut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_DateLivraison)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_DateLivraison)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Nom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Prenom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Prenom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Civilite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Civilite)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Adresse)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Adresse)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_CodePostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_CodePostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COM_Ville)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COM_Ville)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.CLI_Nom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Client.CLI_Nom)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.COM_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

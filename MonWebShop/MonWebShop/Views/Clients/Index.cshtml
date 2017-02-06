@@ -1,0 +1,81 @@
+﻿@model IEnumerable<MonWebShop.DAL.Client>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Civilite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Adresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_CodePostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLI_Telephone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Civilite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Adresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_CodePostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLI_Telephone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CLI_Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CLI_Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CLI_Id })
+        </td>
+    </tr>
+}
+
+</table>
