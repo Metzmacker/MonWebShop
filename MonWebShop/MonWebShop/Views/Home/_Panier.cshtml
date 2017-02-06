@@ -1,0 +1,22 @@
+﻿<table id="Panier" class="table table-hover table-condensed">
+    <thead>
+        <tr>
+            <th style="width:50%" class="text-center">Article</th>
+            <th style="width:10%" class="text-center">Prix unitaire</th>
+            <th style="width:4%" class="text-center">Quantité</th>
+            <th style="width:4%" class="text-center">+ / -</th>
+            <th style="width:22%" class="text-center">Montant</th>
+        </tr>
+    </thead>
+    <tbody class='Panier'></tbody>
+    <tfoot>
+        <tr class="visible-xs">
+            <td class="text-center"><strong>Total 1.99</strong></td>
+        </tr>
+        <tr>
+            <td colspan="2" class="hidden-xs"></td>
+            <td class="hidden-xs text-center total"><strong></strong></td>
+            <td>@Html.ActionLink("Passer commande", "CommanderPanier", "Commandes", null, new { @class = "btn btn-success btn-block" })</td>
+        </tr>
+    </tfoot>
+</table>

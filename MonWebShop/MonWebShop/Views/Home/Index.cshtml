@@ -28,6 +28,7 @@
     </table>
 </div>
 <br />
+    <span></span>
 <br />
 <div class="col-lg-12 container body-content">
     <div class="col-lg-8">
@@ -61,7 +62,7 @@
         </table>
     </div>
     <div class="col-lg-4">
-        @Html.Partial("Panier")
+        @Html.Partial("_Panier")
     </div>
 </div>
 </body>
@@ -76,7 +77,7 @@
                 $("#detailArticle").dialog({
                 autoOpen: false,
                 modal: true,
-                height: 500,
+                height: 630,
                 width: 500,
                 buttons: {
                     "Ajouter au panier": function () {

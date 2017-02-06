@@ -9,7 +9,8 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table id="cmdTable" class="table">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CLI_Nom)
@@ -40,42 +41,51 @@
         </th>
         <th></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Prenom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Civilite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Adresse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_CodePostal)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Ville)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CLI_Telephone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CLI_Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CLI_Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CLI_Id })
-        </td>
-    </tr>
-}
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Prenom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Civilite)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Adresse)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_CodePostal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Ville)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CLI_Telephone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CLI_Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CLI_Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CLI_Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+@section Scripts {
+    @Scripts.Render("~/bundles/datatables")
+    <script>
+    $(document).ready(function ()
+    { $('#cmdTable').dataTable() });
+    </script>
+} 
