@@ -72,8 +72,8 @@
 @section Scripts {     
     @Scripts.Render("~/bundles/jquery-ui") 
     <script>
-        $(document)
-            .ready(function() {
+        $(document).ready(
+            function () {
                 $("#detailArticle").dialog({
                 autoOpen: false,
                 modal: true,
@@ -88,9 +88,23 @@
                     }
                 }
              });
-           });
-        $(".detail").click(function () {
-            $("#detailArticle").dialog("open");
-        })
+            
+             GetDetail();
+            });
+
+        function GetDetail() {
+            $(document).on('click', '.detail', function () {
+                $.ajax({
+                    type: 'GET', datatype: 'json',
+                    url: '@Url.Action("ArticleDetail", "Home")',
+                    data: { artID: $(this).attr('id') },
+                    success: function (response) {
+                        if (response.result == "OK") {
+                            $("#detailArticle").dialog("open");
+                        }
+                    }
+                });
+            });
+        }
     </script>
     } 

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -141,9 +144,10 @@ namespace MonWebShop.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+            
             return View();
         }
-
+        
         //
         // POST: /Account/Register
         /*Cette methode prend en paramètre le formulaire remplit 
@@ -171,7 +175,7 @@ namespace MonWebShop.Controllers
                                 {
                                     CLI_Nom = model.Nom,
                                     CLI_Prenom = model.Prenom,
-                                    CLI_Civilite = model.Civilite,
+                                    CLI_Civilite = model.Civilite.ToString(),
                                     CLI_Email = model.Email,
                                     CLI_Adresse = model.Adresse,
                                     CLI_CodePostal = model.CodePostal,
