@@ -81,7 +81,7 @@
                 width: 500,
                 buttons: {
                     "Ajouter au panier": function () {
-                        AjouterAuCart();
+                        AjouterAuPanier();
                     },
                     "Fermer": function () {
                         $(this).dialog("close");
@@ -96,10 +96,10 @@
             $(document).on('click', '.detail', function () {
                 $.ajax({
                     type: 'GET', datatype: 'json',
-                    url: '@Url.Action("ArticleDetail", "Home")',
+                    url: '@Url.Action("_Details", "Home")',
                     data: { artID: $(this).attr('id') },
                     success: function (response) {
-                        if (response.result == "OK") {
+                        if (response.result === "OK") {
                             $("#detailArticle").dialog("open");
                         }
                     }
