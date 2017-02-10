@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -10,6 +11,7 @@ using MonWebShop.DAL;
 
 namespace MonWebShop.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CommandesController : Controller
     {
         private WebShopEntities db = new WebShopEntities();
@@ -20,7 +22,11 @@ namespace MonWebShop.Controllers
             var commandes = db.Commandes.Include(c => c.Client);
             return View(commandes.ToList());
         }
-
+        [Authorize(Roles = "client")]
+        public ActionResult CommandesClient(int id)
+        {
+            return View();
+        }
         // GET: Commandes/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,31 +41,7 @@ namespace MonWebShop.Controllers
             }
             return View(commande);
         }
-
-        // GET: Commandes/Create
-        public ActionResult Create()
-        {
-            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom");
-            return View();
-        }
-
-        // POST: Commandes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "COM_Id,COM_CLI_Id,COM_Date,COM_Statut,COM_DateLivraison,COM_Nom,COM_Prenom,COM_Civilite,COM_Adresse,COM_CodePostal,COM_Ville")] Commande commande)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Commandes.Add(commande);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.COM_CLI_Id = new SelectList(db.Clients, "CLI_Id", "CLI_Nom", commande.COM_CLI_Id);
-            return View(commande);
-        }
+        
 
         // GET: Commandes/Edit/5
         public ActionResult Edit(int? id)

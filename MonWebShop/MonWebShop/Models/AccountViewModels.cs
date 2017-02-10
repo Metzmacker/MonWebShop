@@ -70,7 +70,7 @@ namespace MonWebShop.Models
         public string Prenom { get; set; }
 
         [Required]
-        public string Civilite { get; set; }
+        public Civilite Civilite { get; set; }
 
         [Required]
         public string Adresse { get; set; }
@@ -101,6 +101,12 @@ namespace MonWebShop.Models
         public string ConfirmPassword { get; set; }
     }
 
+    public enum Civilite
+    {
+        Madame,
+        Mademoiselle,
+        Monsieur
+    }
     public class ResetPasswordViewModel
     {
         [Required]
