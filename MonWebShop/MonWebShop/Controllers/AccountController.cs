@@ -182,8 +182,10 @@ namespace MonWebShop.Controllers
                             dal.SaveChanges();
                         }
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        System.Console.WriteLine(ex.Message);
+                        
                         // client n'est pas ajouté delete l'asp user créé         
                         await UserManager.DeleteAsync(user);
                         ModelState.AddModelError("", "Echec création client, veuillez réessayer");

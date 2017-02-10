@@ -1,7 +1,7 @@
 ﻿@model MonWebShop.DAL.Client
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Créer";
 }
 
 <h2>Create</h2>
@@ -14,6 +14,14 @@
         <h4>Client</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        <div class="form-group">
+            @Html.LabelFor(model => model.CLI_Civilite, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CLI_Civilite, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CLI_Civilite, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.CLI_Nom, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -27,14 +35,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CLI_Prenom, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CLI_Prenom, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CLI_Civilite, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CLI_Civilite, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CLI_Civilite, "", new { @class = "text-danger" })
             </div>
         </div>
 
