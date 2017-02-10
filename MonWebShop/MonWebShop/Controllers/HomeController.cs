@@ -21,7 +21,13 @@ namespace MonWebShop.Controllers
             var articles = db.Articles.Include(a => a.SousCategorie);
             return View(articles.ToList());
         }
-        [Authorize(Roles = "admin")]
+
+        public JsonResult GetSousCategorie(int Id)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.SousCategories.Where(s => s.SCAT_CAT_Id == Id), JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Home/Details/5
         public ActionResult _Details(int? id)
         {
@@ -36,6 +42,7 @@ namespace MonWebShop.Controllers
             }
             return View(article);
         }
+
         [Authorize(Roles = "admin")]
         // GET: Home/Create
         public ActionResult Create()
