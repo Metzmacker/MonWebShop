@@ -32,7 +32,7 @@
 <br />
 <div class="col-lg-12 container body-content">
     <div class="col-lg-8">
-        <table id="ListTable" class="table">
+        <table id="articlesTable" class="table">
             <tr>
                 <th>Articles</th>
                 <th>Descriptif</th>
@@ -114,7 +114,6 @@
 
 
         //Fonction qui charge les sous-catégories en fonctions de la categorie choisie.
-
         $(function () {
             $("#CAT_Id")
                 .change(function () {
@@ -135,5 +134,51 @@
                         });
                 });
         });
+
+        //Fonction qui ajuste la valeur de l'Id du la sous categorie
+
+
+        //Fonction qui recupere les resultat Json du filtre
+        $(document)
+            .ready(function() {
+                $("#CAT_Id")
+                    .change(function() 
+                    {
+                            
+                        $.ajax(
+                       {
+                            type: 'GET',
+                            url: "/Home/GetArticleByCategorieId",
+                            data: { catId: $("#CAT_Id").val() },
+                            success: function (response) 
+                            {
+                                $('#articlesTable').html(response);
+                            }
+                            
+                        });
+                    });
+ 
+            });
+
+        //Fonction qui recupere les resultat Json du filtre
+        $(document)
+            .ready(function () {
+                $("#sousCat")
+                    .change(function () 
+                    {
+
+                        $.ajax(
+                        {
+                            type: 'GET',
+                            url: "/Home/GetArticleBySousCategorieId",
+                            data: { scatId: $("#sousCat").val() },
+                            success: function (response) 
+                            {
+                                $('#articlesTable').html(response);
+                            }
+                          
+                        });
+                    });
+            });
     </script>
     } 

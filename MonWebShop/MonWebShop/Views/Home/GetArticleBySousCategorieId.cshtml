@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MonWebShop.DAL.Article>
+
+
+<table id="articlesTable" class="table">
+    <tr>
+        <th>Libellé</th>
+        <th>Descriptif</th>
+        <th>Prix</th>
+        <th>Quantité en stock</th>
+        <th>Sous-Catégorie</th>
+        <th>Actions</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img class="artImage" height="50" width="50" src="@item.ART_Photo" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ART_Libelle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ART_Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ART_Prix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ART_Stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SousCategorie.SCAT_Libelle)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "_Details", new { id = item.ART_Id })
+
+            </td>
+            @if (User.IsInRole("admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ART_Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ART_Id })
+                </td>
+            }
+
+        </tr>
+    }
+
+</table>

@@ -624,6 +624,8 @@
     <Content Include="Views\Commandes\Details.cshtml" />
     <Content Include="Views\Commandes\Edit.cshtml" />
     <Content Include="Views\Commandes\Index.cshtml" />
+    <Content Include="Views\Home\GetArticleBySousCategorieId.cshtml" />
+    <Content Include="Views\Home\GetArticleByCategorieId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

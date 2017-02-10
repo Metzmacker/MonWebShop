@@ -21,11 +21,55 @@ namespace MonWebShop.Controllers
             var articles = db.Articles.Include(a => a.SousCategorie);
             return View(articles.ToList());
         }
-
+        [AllowAnonymous]
+        //Action qui retourne les sous-categories selon la categorie choisie
         public JsonResult GetSousCategorie(int Id)
         {
             db.Configuration.ProxyCreationEnabled = false;
             return Json(db.SousCategories.Where(s => s.SCAT_CAT_Id == Id), JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        //Action qui retournes la liste des articles d'une categorie choisie partielle
+        public ActionResult GetArticleByCategorieId(int catId)
+        {
+
+            List<Article> Articles = new List<Article>();
+            using (WebShopEntities ws = new WebShopEntities())
+            {
+                switch (catId)
+                {
+                    case 1:
+                        Articles = db.Articles.OrderBy(a => a.ART_Libelle).ToList();
+                        break;
+                    default:
+                        Articles = db.Articles.OrderBy(a => a.ART_Libelle).Where(a => a.SousCategorie.SCAT_CAT_Id == catId).ToList();
+                        break;
+               
+                }
+            }
+
+            return PartialView(Articles);
+        }
+
+        [AllowAnonymous]
+        //Action qui retourne la liste des articles selon la sous-categorie choisie sou s forme de vue partielle
+        public ActionResult GetArticleBySousCategorieId(int scatId)
+        {
+            List<Article> Articles = new List<Article>();
+            using (WebShopEntities ws = new WebShopEntities())
+            {
+                switch (scatId)
+                {
+                    case 1:
+                        Articles = db.Articles.OrderBy(a => a.ART_Libelle).ToList();
+                        break;
+                    default:
+                        Articles = db.Articles.OrderBy(a => a.ART_Libelle).Where(a => a.ART_SCAT_Id == scatId).ToList();
+                        break;
+                }
+            }
+
+            return PartialView(Articles);
         }
 
         // GET: Home/Details/5
