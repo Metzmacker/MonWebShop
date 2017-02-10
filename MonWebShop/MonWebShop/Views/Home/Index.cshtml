@@ -20,7 +20,7 @@
             <th class="col-lg-2">@Html.DropDownList("Categories", (SelectList)ViewBag.ListeCategories, new { id = "CAT_Id", @class = "form-control" })</th>
             <th class="col-lg-2">Sous-Catégorie :</th>
             <th class="col-lg-2">
-                <select id="SCAT" class="form-control">
+                <select id="sousCat" class="form-control">
                     <option value="1"></option>
                 </select>
             </th>
@@ -66,45 +66,74 @@
     </div>
 </div>
 </body>
-<div id="detailArticle" style="display:none">
+<div id="detArticle" style="display:none">
     @Html.Partial("_Details", new MonWebShop.DAL.Article())
 </div>
-@section Scripts {     
-    @Scripts.Render("~/bundles/jquery-ui") 
-    <script>
-        $(document).ready(
-            function () {
-                $("#detailArticle").dialog({
-                autoOpen: false,
-                modal: true,
-                height: 630,
-                width: 500,
-                buttons: {
-                    "Ajouter au panier": function () {
-                        AjouterAuCart();
-                    },
-                    "Fermer": function () {
-                        $(this).dialog("close");
-                    }
-                }
-             });
-            
-             GetDetail();
-            });
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery-ui")
 
+    <script>
+        //Execution de script quand la page est chargée
+        $(document).ready(
+           //Formattage du modal
+          function () {
+              $("#detailArticle").dialog(
+                  {
+                      autoOpen: false,
+                      modal: true,
+                      height: 630,
+                      width: 500,
+                      buttons:
+                      {
+                          "Ajouter au panier": function () { AjouterAuPanier(); },
+                          "Fermer": function () { $(this).dialog("close"); }
+                      }
+               });
+            
+          GetDetail();
+          });
+        /*------------------ A revoir pour finalisation ----------*/
+
+        //Fonction qui recupere le detail d'un article et l'affecte au modal pour l'afficher...
         function GetDetail() {
             $(document).on('click', '.detail', function () {
                 $.ajax({
-                    type: 'GET', datatype: 'json',
-                    url: '@Url.Action("ArticleDetail", "Home")',
-                    data: { artID: $(this).attr('id') },
+                    type: 'GET', datatype: 'html',
+                    url: '@Url.Action("_Details", "Home")',
+                    data: { id: $(this).attr('id') },
                     success: function (response) {
                         if (response.result == "OK") {
-                            $("#detailArticle").dialog("open");
+                            $("#detArticle").html(response);
+                            $("#detArticle").dialog("open");
                         }
                     }
                 });
             });
-        }
+        };
+        /*-------------------------------------------------------------*/
+
+
+        //Fonction qui charge les sous-catégories en fonctions de la categorie choisie.
+
+        $(function () {
+            $("#CAT_Id")
+                .change(function () {
+                    $.get("/Home/GetSousCategorie",
+                        { Id: $("#CAT_Id").val() },
+                        function (data) {
+                            $("#sousCat").empty();
+                            $.each(data,
+                                function (index, row) {
+                                    $("#sousCat")
+                                        .append("<option value='" +
+                                            row.SCAT_Id +
+                                            "'>" +
+                                            row
+                                            .SCAT_Libelle +
+                                            "</option>");
+                                });
+                        });
+                });
+        });
     </script>
     } 
